@@ -58,6 +58,7 @@ Items = (
     SeedEntry("Purple Sniper / Renegade / Nurse / Shock Trooper / Sickle / Technophile / Rustler", Tag.BaseGame),
     SeedEntry("Purple Spy / Tank / Trickster / Specialist / Wound / Prodigy / Sheriff", Tag.BaseGame),
     SeedEntry("Purple Stalker / Titan / Warder / Tactician / Blister / Catalyst / Crapshooter", Tag.BaseGame),
+    SeedEntry("Purple Survivor / Hoarder / Witch / Veteran / Reaper / Sweetheart / Bounty Hunter", Tag.BaseGame),
     SeedEntry("Purple The Lone Star", Tag.BaseGame),
     SeedEntry("Purple Illusion", Tag.BaseGame),
     SeedEntry("Blue Rogue / Monk / Cleric / Ranger / Barbarian / Necromancer / Justicar", Tag.DragonKeep),
