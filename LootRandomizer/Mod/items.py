@@ -163,6 +163,11 @@ class Item:
 
     def initialize(self) -> None:
         self._inventory = FindObject("InventoryBalanceDefinition", self.path)
+        if not self._inventory:
+            self._inventory = FindObject(
+            "InventoryBalanceDefinition",
+            "GD_ItemGrades.BuffDrink.ItemGrade_BuffDrink_Toughness",
+        )
         self._original_gamestages = tuple(
             manufacturer.Grades[0].GameStageRequirement.MinGameStage
             for manufacturer in self.inventory.Manufacturers
@@ -211,6 +216,14 @@ class ClassMod(Item):
 
     def initialize(self) -> None:
         super().initialize()
+        if not self.inventory or not hasattr(self.inventory.BaseDefinition, "ClassModDefinitions"):
+            buff = FindObject(
+                    "InventoryBalanceDefinition",
+                    "GD_ItemGrades.BuffDrink.ItemGrade_BuffDrink_Toughness",
+                )
+            self._inventory = buff
+            self._original_coms = tuple()
+            return
         self._original_coms = tuple(
             self.inventory.BaseDefinition.ClassModDefinitions
         )
@@ -218,13 +231,16 @@ class ClassMod(Item):
     def prepare(self) -> None:
         super().prepare()
         base_def = self.inventory.BaseDefinition
+        if not hasattr(base_def, "ClassModDefinitions"):
+            return
         com_defs = tuple(base_def.ClassModDefinitions)
         if len(com_defs) > self.index:
             base_def.ClassModDefinitions = (com_defs[self.index],)
 
     def revert(self) -> None:
         super().revert()
-        self.inventory.BaseDefinition.ClassModDefinitions = self._original_coms
+        if hasattr(self.inventory.BaseDefinition, "ClassModDefinitions"):
+            self.inventory.BaseDefinition.ClassModDefinitions = self._original_coms
 
 
 class BanditGrenade(Item):
