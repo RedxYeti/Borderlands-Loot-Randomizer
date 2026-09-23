@@ -12,20 +12,23 @@ class BlueAlignmentClassMod(Item):
 
     def initialize(self) -> None:
         super().initialize()
-        spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
-        self._original_parts = convert_struct(spec_data.WeightedParts)
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
+            self._original_parts = convert_struct(spec_data.WeightedParts)
 
     def prepare(self) -> None:
         super().prepare()
-        spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
-        spec_data.WeightedParts = tuple(
-            self._original_parts[i] for i in (2, 3, 5, 6, 8, 9)
-        )
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
+            spec_data.WeightedParts = tuple(
+                self._original_parts[i] for i in (2, 3, 5, 6, 8, 9)
+            )
 
     def revert(self) -> None:
         super().revert()
-        spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
-        spec_data.WeightedParts = self._original_parts
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
+            spec_data.WeightedParts = self._original_parts
 
 
 class PurpleAlignmentClassMod(Item):
@@ -33,18 +36,21 @@ class PurpleAlignmentClassMod(Item):
 
     def initialize(self) -> None:
         super().initialize()
-        spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
-        self._original_parts = convert_struct(spec_data.WeightedParts)
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
+            self._original_parts = convert_struct(spec_data.WeightedParts)
 
     def prepare(self) -> None:
         super().prepare()
-        spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
-        spec_data.WeightedParts = tuple(self._original_parts[10:19])
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
+            spec_data.WeightedParts = tuple(self._original_parts[10:19])
 
     def revert(self) -> None:
         super().revert()
-        spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
-        spec_data.WeightedParts = self._original_parts
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            spec_data = self.inventory.RuntimePartListCollection.AlphaPartData
+            spec_data.WeightedParts = self._original_parts
 
 
 class Gen2ClassMod(Item):
