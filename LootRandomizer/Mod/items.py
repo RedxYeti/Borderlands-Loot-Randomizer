@@ -216,7 +216,7 @@ class ClassMod(Item):
 
     def initialize(self) -> None:
         super().initialize()
-        if not self.inventory or not hasattr(self.inventory.BaseDefinition, "ClassModDefinitions"):
+        if not self.inventory:
             buff = FindObject(
                     "InventoryBalanceDefinition",
                     "GD_ItemGrades.BuffDrink.ItemGrade_BuffDrink_Toughness",
@@ -231,7 +231,7 @@ class ClassMod(Item):
     def prepare(self) -> None:
         super().prepare()
         base_def = self.inventory.BaseDefinition
-        if not hasattr(base_def, "ClassModDefinitions"):
+        if not base_def:
             return
         com_defs = tuple(base_def.ClassModDefinitions)
         if len(com_defs) > self.index:
@@ -239,7 +239,7 @@ class ClassMod(Item):
 
     def revert(self) -> None:
         super().revert()
-        if hasattr(self.inventory.BaseDefinition, "ClassModDefinitions"):
+        if self.inventory.BaseDefinition:
             self.inventory.BaseDefinition.ClassModDefinitions = self._original_coms
 
 

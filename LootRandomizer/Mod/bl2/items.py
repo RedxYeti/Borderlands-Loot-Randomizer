@@ -59,17 +59,20 @@ class Gen2ClassMod(Item):
 
     def initialize(self) -> None:
         super().initialize()
-        self._original_coms = tuple(self.inventory.ClassModDefinitions)
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            self._original_coms = tuple(self.inventory.ClassModDefinitions)
 
     def prepare(self) -> None:
         super().prepare()
-        self.inventory.ClassModDefinitions = (
-            self.inventory.ClassModDefinitions[self.index],
-        )
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            self.inventory.ClassModDefinitions = (
+                self.inventory.ClassModDefinitions[self.index],
+            )
 
     def revert(self) -> None:
         super().revert()
-        self.inventory.ClassModDefinitions = self._original_coms
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            self.inventory.ClassModDefinitions = self._original_coms
 
 
 class HyperionPistol(Item):
