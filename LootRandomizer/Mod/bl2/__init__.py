@@ -19,6 +19,7 @@ class Character(enum.Enum):
     Psycho = "GD_LilacPackageDef.PlayerClassId.Psycho"
     Mechromancer = "GD_TulipPackageDef.PlayerClassId.Mechromancer"
     Lawbringer = "GD_NishaPackageDef.PlayerClassId.Nisha"
+    Doppelganger = "GD_Doppelganger_Package.PlayerClassId_Doppelganger"
 
 
 class Category(str, enum.Enum):
