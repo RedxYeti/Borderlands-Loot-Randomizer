@@ -20,6 +20,7 @@ class Character(enum.Enum):
     Mechromancer = "GD_TulipPackageDef.PlayerClassId.Mechromancer"
     Lawbringer = "GD_NishaPackageDef.PlayerClassId.Nisha"
     Doppelganger = "GD_Doppelganger_Package.PlayerClassId_Doppelganger"
+    Gladiator = "GD_GladiatorPkgDef.PlayerClassId.Gladiator"
 
 
 class Category(str, enum.Enum):

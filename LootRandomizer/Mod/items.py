@@ -224,9 +224,10 @@ class ClassMod(Item):
             self._inventory = buff
             self._original_coms = tuple()
             return
-        self._original_coms = tuple(
-            self.inventory.BaseDefinition.ClassModDefinitions
-        )
+        if self.inventory.Class.Name == "ClassModBalanceDefinition":
+            self._original_coms = tuple(
+                self.inventory.BaseDefinition.ClassModDefinitions
+            )
 
     def prepare(self) -> None:
         super().prepare()
