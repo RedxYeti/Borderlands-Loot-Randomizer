@@ -405,7 +405,7 @@ Items: Sequence[ItemPool] = (
         Item("GD_Lilac_ClassMods.BalanceDefs.BalDef_ClassMod_Psycho_05_Legendary", Character.Psycho),
         Item("GD_Tulip_ItemGrades.ClassMods.BalDef_ClassMod_Mechromancer_05_Legendary", Character.Mechromancer),
         Item("GD_Nisha_ItemGrades.ClassMods.BalDef_ClassMod_Mechromancer_05_Legendary", Character.Lawbringer),
-        Item("GD_Quince_ClassMods.A_Item_Doppelganger.ClassMod_Doppelganger_Z_LegendaryDoppelganger", Character.Doppelganger),
+        Item("GD_Quince_ItemGrades.ClassMods.BalDef_ClassMod_Doppelganger_05_Legendary", Character.Doppelganger),
         Item("GD_GladiatorClassMods.BalanceDefs.BalDef_ClassMod_Gladiator_05_Legendary", Character.Gladiator),
     ),
     ItemPool("Slayer Of Terramorphous", Hint.LegendaryClassMod,
