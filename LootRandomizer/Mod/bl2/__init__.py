@@ -4,9 +4,8 @@ import enum
 from typing import Callable, List, Optional
 from unrealsdk import UObject
 
-
-CurrentVersion = 7
-SupportedVersions = (1, 2, 3, 4, 5, 6, 7)
+CurrentVersion = 8
+SupportedVersions = (1, 2, 3, 4, 5, 6, 7, 8)
 
 
 class Character(enum.Enum):
