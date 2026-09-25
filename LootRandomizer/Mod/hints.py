@@ -58,12 +58,13 @@ duditem_pickupflag: Optional[UObject] = None
 useitem_behavior: Optional[UObject] = None
 
 padding_pool: UObject
-
+padding: UObject
+dudicated: UObject
 
 def Enable() -> None:
     global inventory_template, useitem_template, presentation_template, custompresentation_template
     global hintitem_mesh, duditem_mesh, hintitem_pickupflag, duditem_pickupflag
-    global useitem_behavior, padding_pool
+    global useitem_behavior, padding_pool, padding, dudicated
 
     RunHook(
         "WillowGame.Behavior_LocalCustomEvent.ApplyBehaviorToContext",
@@ -162,6 +163,31 @@ def Enable() -> None:
     padding.InventoryDefinition = construct_object(useitem_template, padding)
     padding.InventoryDefinition.PickupLifeSpan = 0.000001
     padding_pool.BalancedItems = ((None, padding, (1, None, None, 1), True),)
+
+    dudicated_inv = construct_object(
+        inventory_template, "InvBal_Hint_" + "Dudicated"
+    )
+
+    useitem_dudicated = construct_object(useitem_template, dudicated_inv)
+    dudicated_inv.InventoryDefinition = useitem_dudicated
+    set_command(useitem_dudicated, "ItemName", f"Nothing")
+
+    useitem_dudicated.CustomPresentations = (
+        construct_object(custompresentation_template, useitem_dudicated),
+    )
+    useitem_dudicated.Presentation = construct_object(
+        presentation_template, useitem_dudicated
+    )
+    useitem_dudicated.NonCompositeStaticMesh = duditem_mesh
+    useitem_dudicated.PickupFlagIcon = duditem_pickupflag
+
+    hint_caption = "&nbsp;"
+    hint_text = f"<font color='#bc9898'>This item was for another character, but they're not here right now.</font>"
+    set_command(
+        useitem_dudicated.Presentation, "DescriptionLocReference", hint_caption
+    )
+    set_command(useitem_dudicated.CustomPresentations[0], "Description", hint_text)
+    KeepAlive(useitem_dudicated)
 
 
 def Disable() -> None:
